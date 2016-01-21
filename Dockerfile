@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.16
+FROM phusion/baseimage:0.9.18
 MAINTAINER Create Digital <hello@createdigital.me>
 
 ENV HOME /root
@@ -7,6 +7,7 @@ CMD ["/sbin/my_init"]
 RUN apt-get update -qy && apt-get install -qy unzip wget software-properties-common \
     sudo git libxml2-dev libxslt-dev lib32z1-dev libpq-dev libjpeg8 libjpeg8-dev libffi-dev libtiff5 gettext
 
+# note that logstash-forwarder is deprecated. Now we have to switch to file beats.
 ADD logstash-forwarder_0.4.0_amd64.deb /tmp/logstash-forwarder_0.4.0_amd64.deb
 RUN cd /tmp && dpkg -i logstash-forwarder_0.4.0_amd64.deb
 
